@@ -1,11 +1,3 @@
-.board {
-  position: relative;
-  box-sizing: border-box;
-  background: silver;
-  font-size: 48px;
-  line-height: 48px;
-}
-
 .cell {
   position: absolute;
   box-sizing: border-box;
@@ -14,7 +6,8 @@
   background: white;
   outline: 1px solid white;
   display: block;
-  transition: left 0.3s, top 0.3s;
+  left: 0;
+  top: 0;
 }
 
 .cell i {
@@ -27,8 +20,6 @@
   font-weight: bold;
   font-style: normal;
 }
-
-.cell.vnull i { background: #EEEEEE; }
 
 .cell.w1 i { font-size: 24px; }
 .cell.v2 i { background: #FFF8DC; color: #000000; }

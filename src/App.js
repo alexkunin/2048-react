@@ -1,13 +1,13 @@
 import React from 'react';
-import './App.css';
 import { Board } from './Board';
 import { Cell } from './Cell';
 import { State } from './State';
 
 class Game extends React.Component {
   state = new State();
-
   onKeyDown = this.handler.bind(this);
+  stateSubscription = null;
+  cells = [];
 
   handler(event) {
     switch (event.code) {
@@ -26,15 +26,15 @@ class Game extends React.Component {
       default:
         return;
     }
-    this.forceUpdate();
-    setTimeout(() => {
-      this.state.addRandomCell();
-      this.forceUpdate();
-    }, 300);
   }
 
   componentDidMount() {
     window.addEventListener('keydown', this.onKeyDown);
+    this.stateSubscription = this.state.subscribe(cells => {
+      this.cells = [ ...cells ].sort((a, b) => a.cell.id - b.cell.id);
+      this.forceUpdate();
+    });
+    this.state.addRandomCell();
   }
 
   render() {
@@ -43,12 +43,20 @@ class Game extends React.Component {
         width={ this.state.width }
         height={ this.state.height }
       >
-        { [ ...this.state.getNonEmptyCells() ].map(({ x, y, value, id }) => <Cell key={ id } x={ x } y={ y } value={ value }/>) }
+        { this.cells.map(({ cell: { id, value }, from, to }) => {
+          if (!to) {
+            return <Cell key={ id } x={ from.x } y={ from.y } value={ value } opacity={ 0 }/>;
+          } else {
+            return <Cell key={ id } x={ to.x } y={ to.y } value={ value } opacity={ 1 }/>;
+          }
+        }) }
       </Board>
     );
   }
 
   componentWillUnmount() {
+    this.stateSubscription.unsubscribe();
+    this.stateSubscription = null;
     window.removeEventListener('keydown', this.onKeyDown);
   }
 }

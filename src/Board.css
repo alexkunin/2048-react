@@ -1,0 +1,7 @@
+.board {
+  position: relative;
+  box-sizing: border-box;
+  background: silver;
+  font-size: 48px;
+  line-height: 48px;
+}
