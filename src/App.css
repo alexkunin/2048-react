@@ -1,0 +1,53 @@
+.board {
+  position: relative;
+  box-sizing: border-box;
+  background: silver;
+  font-size: 48px;
+  line-height: 48px;
+}
+
+.cell {
+  position: absolute;
+  box-sizing: border-box;
+  width: 1em;
+  height: 1em;
+  background: white;
+  outline: 1px solid white;
+  display: block;
+  transition: left 0.3s, top 0.3s;
+}
+
+.cell i {
+  display: block;
+  width: 100%;
+  height: 100%;
+  font-family: Helvetica, sans-serif;
+  text-align: center;
+  vertical-align: middle;
+  font-weight: bold;
+  font-style: normal;
+}
+
+.cell.vnull i { background: #EEEEEE; }
+
+.cell.w1 i { font-size: 24px; }
+.cell.v2 i { background: #FFF8DC; color: #000000; }
+.cell.v4 i { background: #FFEBCD; color: #000000; }
+.cell.v8 i { background: #FFE4C4; color: #000000; }
+
+.cell.w2 i { font-size: 24px; }
+.cell.v16 i { background: #FFDEAD; color: #000000; }
+.cell.v32 i { background: #F5DEB3; color: #000000; }
+.cell.v64 i { background: #DEB887; color: #000000; }
+
+.cell.w3 i { font-size: 20px; }
+.cell.v128 i { background: #D2B48C; color: #000000; }
+.cell.v256 i { background: #F4A460; color: #000000; }
+.cell.v512 i { background: #DAA520; color: #000000; }
+
+.cell.w4 i { font-size: 14px; }
+.cell.v1024 i { background: #BC8F8F; color: #000000; }
+.cell.v2048 i { background: #CD853F; color: #000000; }
+.cell.v4096 i { background: #B8860B; color: #000000; }
+
+.cell i { font-size: 10px; background: #D2691E; color: #FFFFFF; }
